@@ -34,6 +34,11 @@ class SignUpPageObject extends PageObject {
   clickSignUpButton() {
     this.SignUpButton.click();
   }
+
+  assertErrorMessage() {
+    return cy.contains('li', 'This email is taken.')
+      .should('exist');
+  }
 }
 
 export default SignUpPageObject;

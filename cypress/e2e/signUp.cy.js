@@ -10,7 +10,7 @@ const homePage = new HomePageObject();
 describe('Sign Up page', () => {
   let user;
 
-  before(() => {
+  beforeEach(() => {
     cy.task('db:clear');
     cy.task('generateUser').then((generateUser) => {
       user = generateUser;
@@ -24,5 +24,15 @@ describe('Sign Up page', () => {
     signUpPage.typePassword(user.password);
     signUpPage.clickSignUpButton();
     homePage.assertHeaderContainUsername(user.username);
+  });
+
+  it.only('should not allow register with existing data', () => {
+    cy.register(user.email, user.username, user.password);
+    signUpPage.visit();
+    signUpPage.typeUsername(user.username);
+    signUpPage.typeEmail(user.email);
+    signUpPage.typePassword(user.password);
+    signUpPage.clickSignUpButton();
+    signUpPage.assertErrorMessage();
   });
 });

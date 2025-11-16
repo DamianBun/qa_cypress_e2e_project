@@ -50,6 +50,7 @@ describe('Article', () => {
       articlePage.typeArticleBody(editedArticle.body);
       articlePage.typeArticleTag(editedArticle.tag);
       articlePage.clickInUpdateArticle();
+
       articlePage.assertContainsBody(editedArticle.body);
       articlePage.assertContainsArticleTitle(editedArticle.title);
       articlePage.clickInProfileLink();

@@ -28,12 +28,8 @@
 import ArticlePageObject from './pages/article.pageObject';
 import HomePageObject from './pages/home.pageObject';
 
-Cypress.Commands.add('getByDataCy', (selector) => {
-  cy.get(`[data-cy="${selector}"]`);
-});
-
 Cypress.Commands.add('getByPlaceholder', (placeholder) => {
-  cy.get(`[placeholder="${placeholder}"]`);
+  return cy.get(`[placeholder="${placeholder}"]`);
 });
 
 Cypress.Commands.add('register',
